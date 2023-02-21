@@ -1,0 +1,21 @@
+import java.util.Scanner;
+
+public class prueba{
+
+  public static void main (String[] args) {
+
+  String[] nombres;
+  Scanner teclado = new Scanner(System.in);
+  String input = "";
+   input = teclado.nextLine(); // Nombre:Miguel Profesion:Ingeniero Nacinalidad:Mexicano
+   nombres = input.split("  ");
+   // System.out.println("2o elem=" + nombres[1] );
+
+  for(int i=0 ; i < nombres.length ; i++) {
+   System.out.println("Nombre "   + (i+1) + nombres[i]);
+
+   }
+
+  }
+
+ }
