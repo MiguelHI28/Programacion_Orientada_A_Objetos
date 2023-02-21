@@ -1,0 +1,17 @@
+import java.util.Scanner;
+  Public class metodostring
+    public static void main(string[] args)
+    {
+    String s = "Programacion en java";
+    boolean b1 = s.startwhith (Programacion);
+    boolean b2 = s.startwith (Hola);
+    boolean b3 = s.endswith (En);
+    boolean b4 = s.endswith (Java);
+    
+    System.out.printl(b11);
+    System.out.printl(b2);
+    System.out.printl(b3);
+    System.out.printl(b4);
+    
+    }
+    }
