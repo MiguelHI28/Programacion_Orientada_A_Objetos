@@ -1,1 +1,29 @@
-string ola
+public class JuegodelGato {
+
+   public static void main(String[] args) {
+
+     String [] tablero = { "_","_","_","_","_","_","_","_","_"};
+
+     showTablero(tablero);  
+
+   
+
+   }
+
+   public static void showTablero(String [] tablero {
+
+   
+
+ Sistem.out.println(tablero[0] + " | "+ tablero[1]+" | " ´tablero[2]); 
+
+ Sistem.out.println(tablero[3] + " | "+ tablero[4]+" | " ´tablero[5]); 
+
+ Sistem.out.println(tablero[6] + " | "+ tablero[7]+" | " ´tablero[8]); 
+
+ 
+
+   
+
+        }
+
+   }
