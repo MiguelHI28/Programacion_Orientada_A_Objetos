@@ -1,1 +1,200 @@
-
+import java.util.Scanner;
+ 
+public class InfoCubo {
+	public static void main (String[] args) {
+ 
+		Scanner escáner = new Scanner(System.in);
+ 
+		System.out.println("Bienvenido a InfoCubo, aquí te proporcionaremos informcaión sobre las piezas del puzle que usted quiera.\n");
+		System.out.println("¿Su puzle es un cubo o un cuboide?\nSi es un cubo escriba \"cubo\" y si es un cuboide \"cuboide\".");
+		boolean again, again1; char seguir;
+ 
+		do {
+			again1 = false;
+			String c = escáner.next();
+ 
+			if (c.equals("cubo")){
+ 
+				System.out.println("\nIntroduzca el número de piezas por fila que tiene su cubo.");
+				int p = escáner.nextInt();
+ 
+				do {
+					again = false;
+					if (p > 1) {
+ 
+						System.out.println("Cubo: " + p + "x" + p + "x" + p + "\n\nPIEZAS\nNúmero de piezas en total: " + (p*p*p - (p-2)*(p-2)*(p-2)) );
+						System.out.println("Número de esquinas: 8");
+						System.out.println("Número de aristas: " + 12*(p-2));
+						System.out.println("Número de centros: " + 6*(p-2)*(p-2));
+ 
+						int total = 0;
+						int centros = 0;
+ 
+						for (int i = 1; i <= (p+1)/2; i++) {
+							total = total + i;
+						}
+ 
+						for (int i = 1; i <= (p-1)/2; i++) {
+							centros = centros + i;
+						}
+ 
+						System.out.println("\nTIPOS DE PIEZAS\nNúmero de tipos de piezas en total: " + total);
+						System.out.println("Número de tipos de esquinas: 1");
+						System.out.println("Número de tipos de aristas: " + (((p+1)/2)-1));
+						System.out.println("Número de tipos de centros: " + centros);
+ 
+					} else{
+						if (p == 1) {
+							System.out.println("Un 1x1x1 solo tiene una pieza, que al carecer de forma de esquina, centro o arista, se podría calificar como núcleo.");
+						} else{
+							System.out.println("Número carente de sentido en este contexto, prueba de nuevo");
+							p = escáner.nextInt();
+							again = true;
+						}
+					}
+ 
+					boolean inválido = false;
+                                        System.out.println("\n\n¿Quieres probar con otro puzle? (Podrás elegir el tipo)\nSi la respuesta es afirmativa escriba 's' o 'S'; si es negativa 'n' o 'N'");
+					do {
+						seguir = escáner.next().charAt(0);
+						if (seguir == 's' || seguir == 'S'){
+							again1 = true;
+							System.out.println("\n\n¿Su puzle es un cubo o un cuboide?\nSi es un cubo escriba \"cubo\" y si es un cuboide \"cuboide\".");
+						} else if (!(seguir == 'n' || seguir == 'N')){
+							System.out.println("Comando inválido,  prueba de nuevo.");
+							inválido = true;
+						}
+					} while(inválido);
+ 
+				}while(again);
+ 
+			} else if (c.equals("cuboide")){
+ 
+				System.out.println("\nEscriba las tres dimensiones del cuboide separando cada una con un intro. Cuando haya escrito las tres, dé otro intro.");
+				int[] ps = new int[3];
+				for (int i = 0; i < 3; i++){
+					ps[i] = escáner.nextInt();
+				}
+				System.out.println("Cuboide: " + ps[0] + "x" + ps[1] + "x" + ps[2]);
+ 
+				boolean np = false;
+				for (int i = 0; i < 3; i++){
+					if (ps[i]==1) {
+						np = true;
+					}
+				}
+ 
+				System.out.print("\nPIEZAS\nNúmero total de piezas: ");
+				if (np==false){
+					System.out.println((ps[0]*ps[1]*ps[2]-(ps[0]-2)*(ps[1]-2)*(ps[2]-2)) );
+					System.out.println("Número de esquinas: 8");
+				} else{
+					System.out.println(ps[0]*ps[1]*ps[2]);
+ 
+					int núcleo = 0;
+					int centros1 = 0;
+					int centros2 = 0;
+					int aristas1 = 0;
+					int aristas2 = 0;
+					int esquinas = 0;
+					int nd = 0;
+					for (int i = 0; i < 3; i++) {
+						if (ps[i] == 1){
+							nd++;
+						}
+					}
+					switch (nd){
+ 
+					case 1:
+						núcleo = -((ps[0]-2)*(ps[1]-2)*(ps[2]-2));
+						aristas2 = 4;
+						centros2 = 2*(ps[0]+ps[1]+ps[2]-5);
+ 
+						esquinas = 4;
+						aristas1 = centros2;
+						centros1 = núcleo;
+						break;
+ 
+					case 2:
+						núcleo = (ps[0]-2)*(ps[1]-2)*(ps[2]-2);
+						centros2 = 2;
+						aristas2 = 0;
+ 
+						esquinas = 2;
+						for (int i = 0; i < 3; i++){
+							if (ps[i]/2*2==ps[i]){
+								centros1 = 0;
+								break;
+							} else{
+								centros1 = 1;
+							}
+						}
+						aristas1 = (ps[0]*ps[1]*ps[2]-2)/2*2;
+						break;
+ 
+					default://1x1x1
+						núcleo = 1;
+						aristas2 = 0;
+						centros2 = 0;
+ 
+						centros1 = 1;
+						aristas1 = 0;
+						esquinas = 0;
+						break;
+					}
+ 
+					System.out.println("Los criterios de calificación de piezas son ambiguos en este tipo de cuboides."
+							+ "\nLea la información que le corresponde a este tema en la descripción del programa marcada con un asterisco (*) para responder a la siguiente pregunta.");
+					System.out.println("¿Seguirá el primer criterio (marque 1), el segundo (marque 2), o quiere que se muestren ambos (marque 3)?");
+					int criterio = escáner.nextInt();
+					switch (criterio){
+					case 1:
+						System.out.println("Número de esquinas: " + esquinas);
+						System.out.println("Número de aristas: " + aristas1);
+						System.out.println("Número de centros: " + centros1);
+						break;
+ 
+					case 2:
+						System.out.println("Número de esquinas: 0");
+						System.out.println("Número de aristas: " + aristas2);
+						System.out.println("Número de centros: " + centros2);
+						System.out.println("Número de núcleos: " + núcleo);
+						break;
+ 
+					case 3:
+						System.out.println("Criterio 1 (físico):");
+						System.out.println("Número de esquinas: " + esquinas);
+						System.out.println("Número de aristas: " + aristas1);
+						System.out.println("Número de centros: " + centros1);
+ 
+						System.out.println("\nCriterio 2 (comportamiento):");
+						System.out.println("Número de esquinas: 0");
+						System.out.println("Número de aristas: " + aristas2);
+						System.out.println("Número de centros: " + centros2);
+						System.out.println("Número de núcleos: " + núcleo);
+						break;
+ 
+					}
+				}
+ 
+				System.out.println("\n\n¿Quieres probar con otro puzle? (Podrás elegir el tipo)\nSi la respuesta es afirmativa escriba 's' o 'S'; si es negativa 'n' o 'N'");
+				seguir = escáner.next().charAt(0);
+				if (seguir == 's' || seguir == 'S'){
+					again1 = true;
+					System.out.println("\n\n¿Su puzle es un cubo o un cuboide?\nSi es un cubo escriba \"cubo\" y si es un cuboide \"cuboide\".");
+				} else if (!(seguir == 'n' || seguir == 'N')){
+					System.out.println("Comando inválido,  prueba de nuevo.");
+				}
+ 
+			} else{
+				again1 = true;
+				System.out.println("Comando inválido, prueba de nuevo.");
+			}
+ 
+ 
+		}while(again1);
+ 
+		System.out.println("\nFin del programa.");
+		escáner.close();
+	}
+}
