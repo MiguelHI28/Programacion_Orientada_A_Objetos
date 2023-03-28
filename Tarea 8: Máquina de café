@@ -1,1 +1,82 @@
-ola
+public class Cafetera {
+
+    private int capacidadMaxima;
+    private int cantidadActual;
+    int taza;
+    int relleno;
+    
+
+    
+    public double getCapacidadMaxima() {
+        return capacidadMaxima;
+    }
+
+    public void setCapacidadMaxima(int capacidadMaxima) {
+        this.capacidadMaxima = capacidadMaxima;
+    }
+
+    public double getCantidadActual() {
+        return cantidadActual;
+    }
+
+    public void setCantidadActual(int cantidadActual) {
+        this.cantidadActual = cantidadActual;
+    }
+ 
+ 
+    public Cafetera (){
+        capacidadMaxima = 1000;
+        cantidadActual = 0;
+    }
+
+        public Cafetera (int capacidadMaxima) {
+        cantidadActual = capacidadMaxima;
+        
+    }
+
+
+  
+    {
+        this.capacidadMaxima = capacidadMaxima;
+       
+        this.cantidadActual = (cantidadActual > capacidadMaxima) ? capacidadMaxima :
+  
+    }
+    
+    
+   
+    public double llenarCafetera(){
+        cantidadActual=capacidadMaxima;
+        //la cantidad actual, es llenada a su capacidadMaxima
+        return cantidadActual; 
+    }
+    
+     public void servirTaza(int taza){
+         
+
+       
+         
+         if (taza > cantidadActual){
+            
+             vaciarCafetera();
+         }else
+         cantidadActual -= taza;
+        
+        
+        
+    }
+     
+     public double vaciarCafetera(){
+        cantidadActual=0;
+        return cantidadActual;
+        
+    }
+     
+     public double agregarCafe(int relleno){
+         
+         cantidadActual += relleno;
+        
+        
+    }
+ 
+}
