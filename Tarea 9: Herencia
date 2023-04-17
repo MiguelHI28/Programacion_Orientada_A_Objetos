@@ -1,1 +1,125 @@
-aaaaa
+public class Vehiculo {
+    private String marca;
+    private String modelo;
+    private String color;
+
+    public Vehiculo() {
+        this.marca = "";
+        this.modelo = "";
+        this.color = "";
+    }
+
+    public Vehiculo(String marca, String modelo, String color) {
+        this.marca = marca;
+        this.modelo = modelo;
+        this.color = color;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    @Override
+    public String toString() {
+        return color + " " + marca + " " + modelo;
+    }
+
+    public void acelerar() {
+        System.out.println("El vehículo está acelerando");
+    }
+
+    public void frenar() {
+        System.out.println("El vehículo está frenando");
+    }
+}
+
+public class Automovil extends Vehiculo {
+    private int numPuertas;
+
+    public Automovil() {
+        super();
+        this.numPuertas = 0;
+    }
+
+    public Automovil(String marca, String modelo, String color, int numPuertas) {
+        super(marca, modelo, color);
+        this.numPuertas = numPuertas;
+    }
+
+    public int getNumPuertas() {
+        return numPuertas;
+    }
+
+    public void setNumPuertas(int numPuertas) {
+        this.numPuertas = numPuertas;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + ", " + numPuertas + " puertas";
+    }
+
+    public void encender() {
+        System.out.println("El automóvil está encendiendo");
+    }
+
+    public void apagar() {
+        System.out.println("El automóvil está apagando");
+    }
+}
+
+public class Taxi extends Automovil {
+    private String idTaxi;
+
+    public Taxi() {
+        super();
+        this.idTaxi = "";
+    }
+
+    public Taxi(String marca, String modelo, String color, int numPuertas, String idTaxi) {
+        super(marca, modelo, color, numPuertas);
+        this.idTaxi = idTaxi;
+    }
+
+    public String getIdTaxi() {
+        return idTaxi;
+    }
+
+    public void setIdTaxi(String idTaxi) {
+        this.idTaxi = idTaxi;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + ", ID taxi: " + idTaxi;
+    }
+
+    public void recogerPasajero() {
+        System.out.println("El taxi está recogiendo un pasajero");
+    }
+
+    public void dejarPasajero() {
+        System.out.println("El taxi está dejando un pasajero");
+    }
+}
+
