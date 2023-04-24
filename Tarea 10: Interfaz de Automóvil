@@ -1,0 +1,65 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class InterfazAutomovil extends JFrame implements ActionListener {
+    
+    private JLabel velocidadLabel;
+    private JLabel marchaLabel;
+    private JButton acelerarButton;
+    private JButton frenarButton;
+    private JButton cambiarMarchaButton;
+    
+    private int velocidad = 0;
+    private int marcha = 1;
+    
+    public InterfazAutomovil() {
+        super("Interfaz de Automóvil");
+        setLayout(new GridLayout(3, 2));
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        velocidadLabel = new JLabel("Velocidad: " + velocidad + " km/h", JLabel.CENTER);
+        add(velocidadLabel);
+        
+        marchaLabel = new JLabel("Marcha: " + marcha, JLabel.CENTER);
+        add(marchaLabel);
+        
+        acelerarButton = new JButton("Acelerar");
+        acelerarButton.addActionListener(this);
+        add(acelerarButton);
+        
+        frenarButton = new JButton("Frenar");
+        frenarButton.addActionListener(this);
+        add(frenarButton);
+        
+        cambiarMarchaButton = new JButton("Cambiar Marcha");
+        cambiarMarchaButton.addActionListener(this);
+        add(cambiarMarchaButton);
+        
+        setSize(300, 150);
+        setVisible(true);
+    }
+    
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == acelerarButton) {
+            velocidad += 10;
+            velocidadLabel.setText("Velocidad: " + velocidad + " km/h");
+        } else if (e.getSource() == frenarButton) {
+            if (velocidad > 0) {
+                velocidad -= 10;
+            }
+            velocidadLabel.setText("Velocidad: " + velocidad + " km/h");
+        } else if (e.getSource() == cambiarMarchaButton) {
+            if (marcha < 5) {
+                marcha++;
+            } else {
+                marcha = 1;
+            }
+            marchaLabel.setText("Marcha: " + marcha);
+        }
+    }
+    
+    public static void main(String[] args) {
+        InterfazAutomovil interfaz = new InterfazAutomovil();
+    }
+}
