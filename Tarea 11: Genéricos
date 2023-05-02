@@ -1,0 +1,23 @@
+public class Genericos<T> {
+    private T valor;
+
+    public Genericos(T valor) {
+        this.valor = valor;
+    }
+
+    public T getValor() {
+        return valor;
+    }
+
+    public void setValor(T valor) {
+        this.valor = valor;
+    }
+
+    public static void main(String[] args) {
+        Genericos<String> cadenaGenerica = new Genericos<>("Hola mundo");
+        System.out.println(cadenaGenerica.getValor());
+        
+        Genericos<Integer> enteroGenerico = new Genericos<>(42);
+        System.out.println(enteroGenerico.getValor());
+    }
+}
