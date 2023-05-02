@@ -1,0 +1,28 @@
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JButton;
+
+public class InterfazGrafica {
+    public static void main(String[] args) {
+        // Crear un nuevo marco de ventana
+        JFrame marco = new JFrame("Mi primera GUI en Java");
+        
+        // Crear una etiqueta
+        JLabel etiqueta = new JLabel("¡Hola, mundo!");
+        marco.add(etiqueta); // Agregar la etiqueta al marco
+        
+        // Crear un botón
+        JButton boton = new JButton("Haz clic aquí");
+        marco.add(boton); // Agregar el botón al marco
+        
+        // Configurar el tamaño y la posición del marco
+        marco.setSize(300, 200);
+        marco.setLocationRelativeTo(null); // Centrar el marco en la pantalla
+        
+        // Configurar la operación de cierre del marco
+        marco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        // Hacer visible el marco
+        marco.setVisible(true);
+    }
+}
